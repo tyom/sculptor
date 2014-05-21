@@ -1,0 +1,104 @@
+.glypto-nav {
+  @include transition(140ms ease-out);
+  float: left;
+  width: $glypto-nav-width;
+  color: #444;
+
+  & + .glyptotheque {
+    @include transition(140ms ease-out);
+    margin-left: $glypto-nav-width;
+    border-left: 1px solid rgba(black, .15);
+  }
+
+  &.m-hide {
+    margin-left: -$glypto-nav-width;
+
+    & + .glyptotheque {
+      margin-left: 0;
+    }
+  }
+
+  > .nav-toggle {
+    @include size(30px);
+    padding: 0;
+    background: none;
+    border: 0;
+    float: right;
+    margin-right: -31px;
+    position: relative;
+    cursor: pointer;
+    opacity: .5;
+    outline: none;
+
+    &:before {
+      @include position(absolute, 8px 0 null 0);
+      box-shadow: 0 0 0 1px black, 0 5px 0 1px black, 0 10px 0 1px black, 0 15px 0 1px black;
+      width: 16px;
+      margin: auto;
+      opacity: .6;
+      content: '';
+    }
+
+    &:hover {
+      opacity: .8;
+    }
+    &:active {
+      opacity: 1;
+    }
+  }
+
+  ul {
+    @include clearfix;
+    list-style: none;
+    font-size: .8rem;
+    line-height: 1.2;
+    padding: 0;
+    margin: 0;
+  }
+
+  ._logo + ul:before,
+  li:after {
+    @include background(linear-gradient(to right, transparent, rgba(black, .06)));
+    height: 1px;
+    display: block;
+    content: '';
+  }
+
+  a {
+    display: block;
+    padding: 8px 10px 8px 16px;
+    color: #777;
+    text-decoration: none;
+
+    &:hover {
+      color: inherit;
+      background: rgba(black, .03);
+    }
+
+    &:active {
+      color: inherit;
+      background: #b5cdd9;
+    }
+  }
+
+  li._index {
+    font-size: .9em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    a {
+      color: inherit;
+      padding: 8px 10px;
+    }
+  }
+
+  li.s-selected a {
+    color: inherit;
+    background: rgba(#b5cdd9, .5);
+  }
+
+  a._logo {
+    background: none;
+  }
+}

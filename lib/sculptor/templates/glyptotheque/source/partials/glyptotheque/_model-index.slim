@@ -1,0 +1,11 @@
+- subpages_for(dir, exclude_indexes: true).each do |r|
+
+  - if r.data.stylesheet
+    - content_for :styles, include_stylesheet(r.data.stylesheet)
+  - elsif r.data.stylesheets
+    - content_for :styles, include_stylesheets(r.data.stylesheets)
+
+  - if r.data.javascripts
+    - content_for :javascripts, include_javascripts(r.data.javascripts)
+
+  = partial r.url, locals: { title: r.data.title, description: r.data.description, url: r.url }

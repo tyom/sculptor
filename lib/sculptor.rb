@@ -1,5 +1,6 @@
-require "sculptor/version"
-
-module Sculptor
-  # Your code goes here...
-end
+require 'pry'
+require 'middleman-core'
+require 'sculptor/version'
+require 'sculptor/method_missing'
+require 'sculptor/extensions'
+require 'sculptor/cli'

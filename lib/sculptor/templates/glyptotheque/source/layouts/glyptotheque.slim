@@ -1,0 +1,8 @@
+- content_for :page_title,  'Glyptotheque'
+- content_for :ng_app,      'glyptotheque'
+- content_for :styles,       stylesheet_link_tag('glyptotheque')
+
+= wrap_layout :layout do
+  = partial 'partials/glyptotheque/nav'
+  main.glyptotheque
+    = yield
