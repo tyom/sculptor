@@ -1,0 +1,14 @@
+- section ||= '/'
+- subpages = subpages_for(section)
+
+- unless subpages.empty?
+  nav.glypto-nav
+    button.nav-toggle ng-click="toggle()"
+    = link_to 'Glyptotheque', '/', class: '_logo'
+    ul
+      - subpages.each do |r|
+        li(class="#{'s-selected' if r == current_page} #{'_index' if r.directory_index?}")
+          - if r.directory_index?
+            = link_to (r.data.title || resource_dir(r)), r.url
+          - else
+            = link_to (r.data.title || resource_file(r)), r.url

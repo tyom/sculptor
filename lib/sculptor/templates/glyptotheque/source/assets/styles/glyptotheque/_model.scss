@@ -1,0 +1,145 @@
+@import 'bourbon';
+@import 'pygments/github';
+
+.glypto-model {
+  overflow: hidden;
+  box-shadow: 0 1px 0 0 rgba(black, .02), 0 1px 1px rgba(black, .1);
+  margin-bottom: 35px;
+
+  > header {
+    @include clearfix;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    background: lighten($light-grey, 9);
+    position: relative;
+    padding: 10px 20px;
+    margin-bottom: 2px;
+
+    h3 {
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 1.2;
+      letter-spacing: -.02rem;
+      margin: 0;
+      float: left;
+    }
+
+    a {
+      color: #0070a8;
+      text-decoration: none;
+
+      &:hover {
+        color: #d25f00;
+      }
+    }
+
+    p {
+      padding: .3rem 0 0;
+      margin: 0;
+      color: #777;
+      font-size: .8rem;
+      clear: both;
+    }
+
+    ._standalone {
+      @include position(absolute, 0px 0px null null);
+      margin: 10px;
+      font-size: 12px;
+    }
+  }
+
+  > .glypto-model-stage {
+    background: lighten($light-grey, 9);
+    padding: 15px;
+
+    > figure {
+      margin: 0;
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px dotted rgba(0,0,0,.13);
+      background: white;
+    }
+
+    ._component {
+      @include transition(200ms max-width);
+      overflow: hidden;
+      padding: 5px;
+
+      &.__small {
+        max-width: 320px;
+      }
+
+      &.__medium {
+        max-width: 640px;
+      }
+
+      &.__large {
+        max-width: 1280px;
+      }
+
+      &.__default {
+        max-width: 100%;
+      }
+    }
+  }
+
+  > .glypto-model-source {
+    background: rgba(black, .03);
+    box-shadow: inset 0 1px darken($light-grey, 5);
+
+    > header {
+      padding: 8px 0;
+      margin: 0 20px;
+    }
+
+    ._toggle {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 1rem;
+      letter-spacing: 1px;
+      color: rgba(black, .3);
+      text-transform: uppercase;
+      padding: 0;
+      background: none;
+      border: none;
+      outline: none;
+
+      &:before {
+        @include transition(120ms);
+        content: '▶';
+        display: inline-block;
+        margin-right: 4px;
+      }
+
+      &:hover {
+        color: rgba(black, .4);
+      }
+      &:active {
+        color: rgba(black, .6);
+      }
+
+      &.__toggled:before {
+        @include transform(rotate(90deg));
+      }
+    }
+
+    > ._container {
+      @include transition(120ms);
+      max-height: 0;
+      overflow: auto;
+    }
+
+    pre {
+      border-top: 1px solid darken($light-grey, 3);
+      font: 12px/1.4 Menlo, monospace;
+      padding: 10px 20px;
+      margin: 0;
+    }
+
+    &.__expanded {
+      > ._container {
+        max-height: 20rem;
+      }
+    }
+  }
+}

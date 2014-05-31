@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'middleman-core/profiling'
+if ARGV.include? '--profile'
+  Middleman::Profiling.profiler = Middleman::Profiling::RubyProfProfiler.new
+end
+Middleman::Profiling.start
+
+require "sculptor/load_paths"
+Sculptor.setup_load_paths
+
+require 'sculptor/cli'
+
+Sculptor::CLI::Base.start

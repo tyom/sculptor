@@ -1,0 +1,1 @@
+require 'sculptor/templates/glyptotheque'

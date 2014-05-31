@@ -1,0 +1,12 @@
+@import 'bourbon';
+
+table {
+  border-bottom: 1px solid #bbb;
+
+  th,
+  td {
+    text-align: left;
+    padding: .5rem;
+    border-top: 1px solid #bbb;
+  }
+}
