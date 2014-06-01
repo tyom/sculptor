@@ -2,7 +2,7 @@
 - subpages = subpages_for(section)
 
 - unless subpages.empty?
-  nav.glypto-nav
+  nav.glypto-nav ng-class="{'s-hidden' : hidden}"
     button.nav-toggle ng-click="toggle()"
     = link_to 'Glyptotheque', '/', class: '_logo'
     ul
