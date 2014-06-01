@@ -5,6 +5,7 @@ html ng-app=(yield_content(:ng_app))
     title = current_page.data.title || yield_content(:page_title) || resource_file(current_page)
     meta name='viewport' content='width=device-width'
     = stylesheet_link_tag 'main'
+    = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'
     = yield_content :styles
     = include_stylesheets(current_page.data.stylesheets) if current_page.data.stylesheets
     = include_stylesheet(current_page.data.stylesheet) if current_page.data.stylesheet
