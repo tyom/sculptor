@@ -27,12 +27,12 @@ class Middleman::Extensions::Model < ::Middleman::Extension
         html = resource.render
       elsif options[:component_url] && options[:component_selector]
         metadata = options
-        doc = Nokogiri::HTML(open(options[:component_url]))
+        doc = Nokogiri::XML(open(options[:component_url]), &:noblanks)
         result = doc.css(options[:component_selector])
         if result.empty?
           raise "Selector `#{options[:component_selector]}` not found in remote location`#{options[:component_url]}`"
         end
-        html = result.to_html
+        html = result.to_xml
       else
         raise "Model `#{options[:title]}`: No `component` of HTML block was given"
       end
