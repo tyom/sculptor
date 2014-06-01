@@ -35,7 +35,7 @@
 .codehilite .nf { color: #990000; font-weight: bold } /* Name.Function */
 .codehilite .nl { color: #990000; font-weight: bold } /* Name.Label */
 .codehilite .nn { color: #555555 } /* Name.Namespace */
-.codehilite .nt { color: #000080 } /* Name.Tag */
+.codehilite .nt { color: #0000b3 } /* Name.Tag */
 .codehilite .nv { color: #008080 } /* Name.Variable */
 .codehilite .ow { color: #000000; font-weight: bold } /* Operator.Word */
 .codehilite .w { color: #bbbbbb } /* Text.Whitespace */
