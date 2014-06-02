@@ -1,8 +1,8 @@
-article.glypto-model
-  - if locals[:standalone]
-    section.glypto-model-stage.m-standalone
-      = html
-  - else
+- if locals[:standalone]
+  - content_for :body_class, 'glypto-model-stage'
+  = html
+- else
+  article.glypto-model
     - if locals[:title] || locals[:description]
       header
         - if locals[:title]
