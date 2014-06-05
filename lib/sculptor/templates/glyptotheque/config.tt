@@ -4,7 +4,7 @@
 
 # With alternative layout
 page '/**', :layout => 'glyptotheque'
-page '/*-full.html', :layout => 'layout'
+page '/*-full.html', :layout => 'standalone'
 # With no layout
 page "/components/**", :layout => false
 page "/partials/*", :layout => false

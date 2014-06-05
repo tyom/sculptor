@@ -9,7 +9,8 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
 
     def include_stylesheet(stylesheet)
       return if stylesheet.empty?
-      stylesheet_link_tag(relative_dir(current_page.path, stylesheet)) + "\n"
+      path = stylesheet.start_with?('http') ? '' : current_page.path
+      stylesheet_link_tag(relative_dir(path, stylesheet)) + "\n"
     end
 
     def include_javascripts(javascripts)

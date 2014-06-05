@@ -10,6 +10,8 @@ Feature: Run `create` command
     Then I hit enter
     And I wait for output to contain "Stylesheet"
     Then I hit enter
+    And I wait for output to contain "Use iframe?"
+    Then I type "n"
     And I wait for output to contain "Include data?"
     Then I type "n"
     And the exit status should be 0
@@ -24,6 +26,8 @@ Feature: Run `create` command
     Then I type "My model description"
     And I wait for output to contain "Stylesheet"
     Then I type "styles"
+    And I wait for output to contain "Use iframe?"
+    Then I type "n"
     And I wait for output to contain "Include data?"
     Then I type "y"
     And the exit status should be 0

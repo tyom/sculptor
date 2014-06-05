@@ -10,10 +10,14 @@ description: >
 <%- unless @stylesheet.empty? -%>
 stylesheet: <%= @stylesheet %>
 <%- end -%>
+<%- if @iframe -%>
+iframe: true
+<%- end -%>
 ---
 
 - title ||= current_page.data.title
 - description ||= current_page.data.description
+- isIframe ||= current_page.data.iframe
 
 <%- if @has_data -%>
 - data = load_data('<%= @model_name %>.yaml')
@@ -22,6 +26,7 @@ stylesheet: <%= @stylesheet %>
 = model title: title,
   description: description,
   standalone: locals[:standalone],
+  iframe: isIframe || locals[:iframe],
   url: locals[:url] do
   <%- if @has_data %>
     table

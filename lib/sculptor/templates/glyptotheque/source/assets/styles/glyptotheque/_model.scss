@@ -51,12 +51,18 @@
     background: lighten($light-grey, 9);
     padding: 10px;
 
-    > figure {
+    > figure,
+    > iframe {
+      @include box-sizing(content-box);
       margin: 0;
-      padding: 10px;
       border-radius: 3px;
       border: 1px dotted rgba(0,0,0,.13);
       background: white;
+      display: block;
+    }
+
+    > figure {
+      padding: 5px;
     }
 
     ._component {

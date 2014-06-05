@@ -27,6 +27,8 @@ module Sculptor::CLI
       @title = options[:title] || ask('Title: ')
       @description = options[:desc] || ask('Description: ')
       @stylesheet = ask('Stylesheet: ')
+      @iframe = yes?('Use iframe?')
+
       @dir = is_subdir ? name.split('/')[0..-2].join('/') : name
 
       @has_data = if yes?('Include data?')
