@@ -82,10 +82,11 @@ activate :data_loaders
 activate :resource_helpers
 activate :syntax, css_class: 'codehilite'
 
+Slim::Engine.set_default_options :pretty => true
+
 # Development-secific configuration
 configure :development do
   activate :livereload
-  Slim::Engine.set_default_options :pretty => true
 end
 
 # Build-specific configuration
