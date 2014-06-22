@@ -7,7 +7,7 @@ html ng-app=(yield_content(:ng_app))
     = stylesheet_link_tag 'main'
     = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'
     = yield_content :styles
-    - unless current_page.data.iframe
+    - unless current_page.metadata.page[:iframe]
       = include_stylesheets(current_page.data.stylesheets) if current_page.data.stylesheets
       = include_stylesheet(current_page.data.stylesheet) if current_page.data.stylesheet
 

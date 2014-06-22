@@ -1,7 +1,6 @@
 ---
 <%- unless @title.empty? -%>
-title: >
-  <%= @title %>
+title: <%= @title %>
 <%- end -%>
 <%- unless @description.empty? -%>
 description: >
@@ -10,30 +9,23 @@ description: >
 <%- unless @stylesheet.empty? -%>
 stylesheet: <%= @stylesheet %>
 <%- end -%>
-<%- if @iframe -%>
-iframe: true
-<%- end -%>
 ---
-
-- title ||= current_page.data.title
-- description ||= current_page.data.description
-- isIframe ||= current_page.data.iframe
 
 <%- if @has_data -%>
 - data = load_data('<%= @model_name %>.yaml')
 <%- end -%>
 
-= model title: title,
-  description: description,
-  standalone: locals[:standalone],
-  iframe: isIframe || locals[:iframe],
-  url: locals[:url] do
-  <%- if @has_data %>
-    table
-      - data.keys.each do |k|
-        tr
-          th = k
-          td = data[k]
-  <%- else -%>
-    p Component HTML code here
-  <%- end -%>
+<%- if @iframe -%>
+= model_iframe
+<%- else -%>
+= model
+<%- end -%>
+<%- if @has_data -%>
+  table
+    - data.keys.each do |k|
+      tr
+        th = k
+        td = data[k]
+<%- else -%>
+  p Component HTML code here
+<%- end -%>

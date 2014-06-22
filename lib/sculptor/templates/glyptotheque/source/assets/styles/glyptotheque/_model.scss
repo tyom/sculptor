@@ -13,6 +13,7 @@
     position: relative;
     padding: 10px 20px;
     margin-bottom: 2px;
+    min-height: 40px;
 
     h3 {
       font-weight: 400;
@@ -62,6 +63,7 @@
     }
 
     > figure {
+      @include clearfix;
       padding: 5px;
     }
 

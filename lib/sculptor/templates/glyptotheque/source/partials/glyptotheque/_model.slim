@@ -1,21 +1,23 @@
-- if locals[:standalone]
+- local_url = current_page.metadata.page[:local_url]
+- title = current_page.metadata.page[:title] || locals[:title]
+
+- if resource_file(current_page).match(/-standalone$/)
   = html
 - else
   article.glypto-model
-    - if locals[:title] || locals[:description]
-      header
-        - if locals[:title]
-          h3._title
-            - if locals[:url]
-              = link_to title, url
-            - else
-              = title
-        - if locals[:description]
-          p._description = description
+    header
+      - if locals[:title]
+        h3._title
+          - if local_url
+            = link_to title, local_url
+          - else
+            = title
+      - if locals[:description]
+        p._description = description
 
-        - url = locals[:url] ? locals[:url] : current_page.url
-        ._standalone = link_to url.sub('.html', '-full.html'), target: '_blank' do
-          i.fa.fa-external-link title="Standalone version"
+      - url = local_url || current_page.url
+      ._standalone = link_to url.sub('.html', '-standalone.html'), target: '_blank' do
+        i.fa.fa-external-link title="Standalone version"
 
     javascript:
       function resizeIframe(obj) {
@@ -29,8 +31,8 @@
       }
 
     section.glypto-model-stage
-      - if locals[:iframe]
-        iframe src="#{url.sub('.html', '-full.html')}" height="0" width="100%" frameborder="0" scrolling="no" onload='javascript:resizeIframe(this);'
+      - if current_page.metadata.page.iframe
+        iframe src="#{url.sub('.html', '-standalone.html')}" height="0" width="100%" frameborder="0" scrolling="no" onload='javascript:resizeIframe(this);'
       - else
         figure = html
 

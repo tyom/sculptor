@@ -16,7 +16,10 @@ module Sculptor::CLI
 
     desc 'create NAME', 'Create new model NAME'
     def create(name)
-      model_path = "source/#{name}"
+
+      dir = Dir.pwd.match(/\/source$/) ? "." : "source"
+
+      model_path = "#{dir}/#{name}"
 
       say(set_color("Creating model: ", :yellow) + set_color(model_path, :white, :bold))
 

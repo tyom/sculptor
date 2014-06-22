@@ -1,6 +1,8 @@
-- subpages_for(dir, exclude_indexes: true).each do |r|
+- subpages_for(current_page.url, exclude_indexes: true).each do |r|
 
-  - unless r.data.iframe
+  - current_page.add_metadata({ page: { title: r.data.title, local_url: r.url, iframe: r.metadata.page[:iframe] } })
+
+  - unless current_page.metadata.page[:iframe]
     - if r.data.stylesheet
       - content_for :styles, include_stylesheet(r.data.stylesheet)
     - elsif r.data.stylesheets
@@ -9,4 +11,4 @@
   - if r.data.javascripts
     - content_for :javascripts, include_javascripts(r.data.javascripts)
 
-  = partial r.url, locals: { title: r.data.title, description: r.data.description, url: r.url, iframe: r.data.iframe }
+  = partial r.url

@@ -47,7 +47,7 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
         resources = resources.reject {|r| r.directory_index? } # Exclude all directory indexes
       end
 
-      resources.reject {|r| r.path.end_with? ("-full#{r.ext}")} # Ignore proxied '-full' mode pages
+      resources.reject {|r| r.path.end_with? ("-standalone#{r.ext}")} # Ignore proxied '-standalone' mode pages
     end
 
     # Use in layouts, in templates either Frontmatter or this method can be used
