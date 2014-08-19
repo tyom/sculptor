@@ -19,17 +19,6 @@
       ._standalone = link_to url.sub('.html', '-standalone.html'), target: '_blank' do
         i.fa.fa-external-link title="Standalone version"
 
-    javascript:
-      function resizeIframe(obj) {
-        var doc = obj.contentDocument
-        var height = Math.max(
-            doc.body.scrollHeight, doc.documentElement.scrollHeight,
-            doc.body.offsetHeight, doc.documentElement.offsetHeight,
-            doc.body.clientHeight, doc.documentElement.clientHeight
-        )
-        obj.style.height = height + 'px';
-      }
-
     section.glypto-model-stage
       - if current_page.metadata.page.iframe
         iframe src="#{url.sub('.html', '-standalone.html')}" height="0" width="100%" frameborder="0" scrolling="no" onload='javascript:resizeIframe(this);'
