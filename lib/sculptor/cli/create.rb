@@ -16,7 +16,10 @@ module Sculptor::CLI
 
     desc 'create NAME', 'Create new model NAME'
     def create(name)
-      model_path = "source/#{name}"
+
+      dir = Dir.pwd.match(/\/source$/) ? "." : "source"
+
+      model_path = "#{dir}/#{name}"
 
       say(set_color("Creating model: ", :yellow) + set_color(model_path, :white, :bold))
 
@@ -27,6 +30,8 @@ module Sculptor::CLI
       @title = options[:title] || ask('Title: ')
       @description = options[:desc] || ask('Description: ')
       @stylesheet = ask('Stylesheet: ')
+      @iframe = yes?('Use iframe?')
+
       @dir = is_subdir ? name.split('/')[0..-2].join('/') : name
 
       @has_data = if yes?('Include data?')

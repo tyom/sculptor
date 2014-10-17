@@ -1,24 +1,28 @@
-article.glypto-model
-  - if locals[:standalone]
-    section.glypto-model-stage.m-standalone
-      = html
-  - else
-    - if locals[:title] || locals[:description]
-      header
-        - if locals[:title]
-          h3._title
-            - if locals[:url]
-              = link_to title, url
-            - else
-              = title
-        - if locals[:description]
-          p._description = description
+- local_url = current_page.metadata.page[:local_url]
+- title = current_page.metadata.page[:title] || locals[:title]
 
-        - url = locals[:url] ? locals[:url] : current_page.url
-        ._standalone = link_to url.sub('.html', '-full.html'), target: '_blank' do
-          i.fa.fa-external-link title="Standalone version"
+- if resource_file(current_page).match(/-standalone$/)
+  = html
+- else
+  article.glypto-model
+    header
+      - if locals[:title]
+        h3._title
+          - if local_url
+            = link_to title, local_url
+          - else
+            = title
+      - if locals[:description]
+        p._description = description
+
+      - url = local_url || current_page.url
+      ._standalone = link_to url.sub('.html', '-standalone.html'), target: '_blank' do
+        i.fa.fa-external-link title="Standalone version"
 
     section.glypto-model-stage
-      figure = html
+      - if current_page.metadata.page.iframe
+        iframe src="#{url.sub('.html', '-standalone.html')}" height="0" width="100%" frameborder="0" scrolling="no" onload='javascript:resizeIframe(this);'
+      - else
+        figure = html
 
     = model_source(source_type) { source_code }

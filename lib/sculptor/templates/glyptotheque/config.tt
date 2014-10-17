@@ -4,9 +4,9 @@
 
 # With alternative layout
 page '/**', :layout => 'glyptotheque'
-page '/*-full.html', :layout => 'layout'
+page '/*-standalone.html', :layout => 'standalone'
 # With no layout
-page "/components/**", :layout => false
+page "*.component", :layout => false
 page "/partials/*", :layout => false
 page '*.css', :layout => false
 page '*.js', :layout => false
@@ -21,7 +21,7 @@ page '*.js', :layout => false
 
 ready do
   subpages_for('/', exclude_indexes: true).each do |r|
-    proxy "#{r.path.sub(r.ext, '')}-full.html", r.path, locals: { standalone: true }
+    proxy "#{r.path.sub(r.ext, '')}-standalone.html", r.path
   end
 end
 
@@ -82,10 +82,11 @@ activate :data_loaders
 activate :resource_helpers
 activate :syntax, css_class: 'codehilite'
 
+Slim::Engine.set_default_options :pretty => true
+
 # Development-secific configuration
 configure :development do
   activate :livereload
-  Slim::Engine.set_default_options :pretty => true
 end
 
 # Build-specific configuration

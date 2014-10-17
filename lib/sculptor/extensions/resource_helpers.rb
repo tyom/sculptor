@@ -9,7 +9,8 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
 
     def include_stylesheet(stylesheet)
       return if stylesheet.empty?
-      stylesheet_link_tag(relative_dir(current_page.path, stylesheet)) + "\n"
+      path = stylesheet.start_with?('http') ? '' : current_page.path
+      stylesheet_link_tag(relative_dir(path, stylesheet)) + "\n"
     end
 
     def include_javascripts(javascripts)
@@ -46,7 +47,7 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
         resources = resources.reject {|r| r.directory_index? } # Exclude all directory indexes
       end
 
-      resources.reject {|r| r.path.end_with? ("-full#{r.ext}")} # Ignore proxied '-full' mode pages
+      resources.reject {|r| r.path.end_with? ("-standalone#{r.ext}")} # Ignore proxied '-standalone' mode pages
     end
 
     # Use in layouts, in templates either Frontmatter or this method can be used
