@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "fivemat", "1.2.1"
   spec.add_development_dependency "guard-rspec"
   spec.add_development_dependency "guard-cucumber"
-  spec.add_development_dependency "pry-plus"
+  spec.add_development_dependency "pry"
 
   spec.add_dependency "middleman-core", [">= 3.3", "< 4.0"]
   spec.add_dependency "thor", [">= 0.15.2", "< 2.0"]
