@@ -101,7 +101,7 @@ Sculptor is using Slim templates internally but should work with other templates
 * `relative_dir`
 * `resource_file`
 * `resource_dir`
-* `subpages_for`
+* `resources_for`
 * `append_class`
 
 ### Data helpers

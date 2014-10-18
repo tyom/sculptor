@@ -1,5 +1,6 @@
 - local_url = current_page.metadata.page[:local_url]
-- title = current_page.metadata.page[:title] || locals[:title]
+- title = locals[:title] || current_page.metadata.page[:title]
+- descirption = locals[:description] || current_page.metadata.page[:description]
 
 - if resource_file(current_page).match(/-standalone$/)
   = html

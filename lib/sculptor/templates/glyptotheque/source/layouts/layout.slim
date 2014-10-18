@@ -8,13 +8,12 @@ html ng-app=(yield_content(:ng_app))
     = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'
     = yield_content :styles
     - unless current_page.metadata.page[:iframe]
-      = include_stylesheets(current_page.data.stylesheets) if current_page.data.stylesheets
-      = include_stylesheet(current_page.data.stylesheet) if current_page.data.stylesheet
+      = include_stylesheets(current_page.data.stylesheets || current_page.data.stylesheet)
 
   body class="#{yield_content(:body_class)}"
     = yield
 
     = yield_content :javascripts
-    = include_javascripts current_page.data.javascripts if current_page.data.javascripts
     = javascript_include_tag  'app'
+    = include_javascripts(current_page.data.javascripts || current_page.data.javascript)
     = yield_content :post_body
