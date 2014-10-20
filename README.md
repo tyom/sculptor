@@ -106,6 +106,10 @@ Sculptor is using Slim templates internally but should work with other templates
 * `resource_file`
 * `resource_dir`
 * `resources_for`
+  - `dir` - target directory for resources list (required)
+  - `ext` - filter resources with matching extension (default: 'html')
+  - `exlude_indexes` - whether to exclude directory index files (default: false)
+  - `sort_by` - sort resources by (defaults to `resource.url`)
 * `append_class`
 
 ### Data helpers

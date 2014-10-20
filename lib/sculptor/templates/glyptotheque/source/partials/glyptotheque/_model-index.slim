@@ -1,4 +1,4 @@
-- resources_for(current_page.url, exclude_indexes: true).each do |r|
+- resources_for(current_page.url, exclude_indexes: true, sort_by: :nav_order).each do |r|
 
   - current_page.add_metadata({ page: { \
       title: r.data.title,

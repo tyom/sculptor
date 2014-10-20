@@ -1,5 +1,5 @@
 - section ||= '/'
-- subpages = resources_for(section)
+- subpages = resources_for(section, sort_by: :nav_order)
 
 - unless subpages.empty?
   nav.glypto-nav ng-class="{'s-hidden' : hidden}"
