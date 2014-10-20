@@ -4,13 +4,9 @@
       title: r.data.title,
       description: r.data.description,
       local_url: r.url,
+      stylesheets: r.data.stylesheet || r.data.stylesheets,
+      javascripts: r.data.javascript || r.data.javascripts,
       iframe: r.metadata.page[:iframe] \
     } })
-
-  - unless current_page.metadata.page[:iframe]
-    - if r.data.stylesheet || r.data.stylesheets
-      - content_for :styles, include_stylesheets(r.data.stylesheet || r.data.stylesheets)
-  - if r.data.javascript || r.data.javascripts
-    - content_for :javascripts, include_javascripts(r.data.javascript || r.data.javascripts)
 
   = partial r.url
