@@ -4,8 +4,11 @@ Tool to create style guides and prototype web apps.
 
 ## Installation
 
+node is required to run Bower.
+
 ```
 $ gem install sculptor
+$ npm install -g bower
 ```
 
 ## Usage
@@ -22,7 +25,8 @@ sculptor init project-name
 
 Aliases: `i`, `new`, `n`.
 
-When finished run `bower install` (`npm install -g bower` if bower is not installed) in project directory to install client-side dependencies.
+This command will create scaffold for new project and install client dependencies via Bower.
+Make sure Bower is installed globally (`npm install -g bower`).
 
 ### Create new model
 
