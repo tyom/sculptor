@@ -2,4 +2,5 @@
 title: <%= @dir %>
 ---
 
-= partial 'partials/glyptotheque/model-index', locals: { dir: '/<%= @dir %>' }
+= partial 'partials/glyptotheque/model-index',
+  dir: '/<%= @dir %>'
