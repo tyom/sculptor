@@ -86,7 +86,7 @@ Slim::Engine.set_default_options :pretty => true
 
 # Development-secific configuration
 configure :development do
-  activate :livereload
+  activate :livereload, animate: true
 end
 
 # Build-specific configuration
