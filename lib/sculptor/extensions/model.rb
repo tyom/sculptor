@@ -17,7 +17,9 @@ class Middleman::Extensions::Model < ::Middleman::Extension
     #       be requested by providing 0-based index of the list of matches.
     #       e.g. `img #0`
     # * `&block` (optional)
-    def model(location=nil, options={}, &block)
+    def model(*options, &block)
+      location = options.first.is_a?(String) && options.shift || nil
+      options = options.first || {}
       if block_given?
         html = capture_html(&block)
         metadata = options

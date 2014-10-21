@@ -87,6 +87,7 @@ Sculptor is using Slim templates internally but should work with other templates
 ### Model helpers
 
 * `model`
+  - `url` (String) - first optional parameter is URL to the page with the component
   - `title`
   - `description`
   - `pretty` {boolean}
