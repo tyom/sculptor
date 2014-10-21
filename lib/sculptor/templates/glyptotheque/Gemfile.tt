@@ -11,6 +11,7 @@ gem 'sass-css-importer'
 gem 'slim'
 gem 'bourbon'
 gem 'susy'
+gem 'breakpoint'
 gem 'oj'
 
 gem 'middleman-syntax', github: 'middleman/middleman-syntax'
