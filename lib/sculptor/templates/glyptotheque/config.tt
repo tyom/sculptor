@@ -83,6 +83,7 @@ activate :resource_helpers
 activate :syntax, css_class: 'codehilite'
 
 Slim::Engine.set_default_options :pretty => true
+Slim::Engine.set_default_options :attr_list_delims => { '(' => ')', '[' => ']' }
 
 # Development-secific configuration
 configure :development do
