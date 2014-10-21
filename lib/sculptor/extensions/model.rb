@@ -37,9 +37,9 @@ class Middleman::Extensions::Model < ::Middleman::Extension
 
           # Hack: inject local data that can be provided as parameter
           # Provided under `data.page` in partials (.component)
-          resource.add_metadata({ page: options[:data] })
+          resource.add_metadata({ page: options[:data] || {} })
 
-          html = resource.render
+          html = resource.render(layout: false)
         end
       else
         raise "Model `#{options[:title]}`: `url` or HTML block is missing"
