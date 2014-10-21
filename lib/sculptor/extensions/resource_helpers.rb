@@ -84,8 +84,9 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
     def include_assets(asset_tag, assets)
       return unless assets
       assets = assets.split(/,\s*/) if assets.is_a? String
+      resource_path = current_page.metadata && current_page.metadata.page[:local_url] || current_page.path
       Array(assets).map { |a|
-        path = a.start_with?('http') ? a : relative_dir(current_page.path, a)
+        path = a.start_with?('http') ? a : relative_dir(resource_path, a)
         "\n" + method(asset_tag).call(path)
       }.join
     end
