@@ -10,7 +10,7 @@ gem 'compass', github: 'chriseppstein/compass'
 gem 'sass-css-importer'
 gem 'slim'
 gem 'bourbon'
-gem 'neat'
+gem 'susy'
 gem 'oj'
 
 gem 'middleman-syntax', github: 'middleman/middleman-syntax'
