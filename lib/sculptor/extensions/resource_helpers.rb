@@ -21,19 +21,23 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
       resource.url.split('/').last
     end
 
-    def resources_for(dir, ext: 'html', exclude_indexes: false, sort_by: nil)
-      resources = sitemap.resources
-        .select  {|r| r.ext == ".#{ext}"}                # Select files only HTML files
+    def resources_for(dir, ext: 'html', exclude_indexes: false, sort_by: nil, ignore: nil)
+      filtered = sitemap.resources
+        .reject  {|r| r.url == dir}                      # Exclude main directory index
         .reject  {|r| r.data.hidden}                     # reject hidden (Front matter)
         .select  {|r| r.url.start_with?(dir)}            # Select files in the given dir
-        .sort_by {|r| r.url }                            # Sort by url (default)
-        .sort_by {|r| r.data[sort_by] || -1}             # Sort by `sort_by` param
-        .reject  {|r| r.url == dir}                      # Exclude main directory index
-        .reject  {|r|                                    # Exclude all directory indexes
-          exclude_indexes ? r.directory_index? : false
-        }
 
-      resources.reject {|r| r.path.end_with? ("-standalone#{r.ext}")} # Ignore proxied '-standalone' mode pages
+      collect_resources(filtered,
+        { ext: ext, exclude_indexes: exclude_indexes, sort_by: sort_by, ignore: ignore}
+      )
+    end
+
+    def resource_tree(dir, ext: 'html', exclude_indexes: false, sort_by: nil, ignore: nil)
+      res = resources_for(dir, ext: ext, exclude_indexes: exclude_indexes, sort_by: sort_by, ignore: ignore)
+      res
+        .select { |r| r.children.any? }
+        .map { |r| parse_resource(r, { ext: ext, exclude_indexes: exclude_indexes, sort_by: sort_by, ignore: ignore }) }
+        .reject { |r| r.parent != '/' }  # Remove non-root directories from the root
     end
 
     def local_data(path)
@@ -80,6 +84,27 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
     end
 
     private
+
+    def collect_resources(resources, options)
+      resources
+        .select  {|r| r.ext == ".#{options[:ext]}"}      # Select files only HTML files
+        .sort_by {|r| r.url }                            # Sort by url (default)
+        .sort_by {|r| r.data[options[:sort_by]] || -1}   # Sort by `sort_by` param
+        .reject  {|r|                                    # Exclude all directory indexes
+          options[:exclude_indexes] ? r.directory_index? : false
+        }
+        .reject  {|r| ignore ? r.url.match(options[:ignore]) : false }  # Ignore URLs matching pattern (if provided)
+        .reject  {|r| r.path.end_with? ("-standalone#{r.ext}")}         # Ignore proxied '-standalone' mode pages
+    end
+
+    def parse_resource(r, options)
+      data = {}
+      data[:title] = r.data.title || resource_dir(r)
+      data[:url] = r.url
+      data[:children] = collect_resources(r.children, options).map { |c| parse_resource(c, options) } if r.children.any?
+      data[:parent] = r.parent.url
+      data
+    end
 
     def include_assets(asset_tag, assets)
       return unless assets
