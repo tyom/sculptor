@@ -82,6 +82,7 @@ activate :data_loaders
 activate :resource_helpers
 activate :syntax, css_class: 'codehilite'
 
+Slim::Engine.disable_option_validator!
 Slim::Engine.set_default_options :pretty => true
 Slim::Engine.set_default_options :attr_list_delims => { '(' => ')', '[' => ']' }
 
