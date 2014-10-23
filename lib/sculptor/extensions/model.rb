@@ -31,21 +31,15 @@ class Middleman::Extensions::Model < ::Middleman::Extension
           html = result.to_html
         # Assume local path
         else
-          resource = sitemap.find_resource_by_path(relative_dir(current_page.path, location).to_s)
-          raise "Included model at `#{location}` was not found" unless resource
-          metadata = resource.metadata.page
-
-          # Hack: inject local data that can be provided as parameter
-          # Provided under `data.page` in partials (.component)
-          resource.add_metadata({ page: options[:data] || {} })
-
-          html = resource.render(layout: false)
+          html = partial(relative_dir(current_page.path, location).to_s)
         end
       else
         raise "Model `#{options[:title]}`: `url` or HTML block is missing"
       end
 
-      options.reverse_merge!(metadata.symbolize_keys!)
+      if metadata
+        options.reverse_merge!(metadata.symbolize_keys!)
+      end
 
       options[:title] = options[:title] || data.page.title
       options[:description] = options[:description] || data.page.description
