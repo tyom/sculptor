@@ -95,6 +95,7 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
         }
         .reject  {|r| ignore ? r.url.match(options[:ignore]) : false }  # Ignore URLs matching pattern (if provided)
         .reject  {|r| r.path.end_with? ("-standalone#{r.ext}")}         # Ignore proxied '-standalone' mode pages
+        .reject  {|r| r.path.start_with? ("partials/")}                 # Ignore partials
     end
 
     def parse_resource(r, options)
