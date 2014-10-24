@@ -32,11 +32,18 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
       )
     end
 
-    def resource_tree(dir, ext: 'html', exclude_indexes: false, sort_by: nil, ignore: nil)
+    def resource_tree(dir, ext: 'html', data_fields: [:title], exclude_indexes: false, sort_by: nil, ignore: nil)
       res = resources_for(dir, ext: ext, exclude_indexes: exclude_indexes, sort_by: sort_by, ignore: ignore)
       res
         .select { |r| r.children.any? }
-        .map { |r| parse_resource(r, { ext: ext, exclude_indexes: exclude_indexes, sort_by: sort_by, ignore: ignore }) }
+        .map { |r| parse_resource(r, {
+            ext: ext,
+            data_fields: data_fields,
+            exclude_indexes: exclude_indexes,
+            sort_by: sort_by,
+            ignore: ignore
+          })
+        }
         .reject { |r| r.parent != '/' }  # Remove non-root directories from the root
     end
 
@@ -100,10 +107,15 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
 
     def parse_resource(r, options)
       data = {}
-      data[:title] = r.data.title || resource_dir(r)
       data[:url] = r.url
       data[:children] = collect_resources(r.children, options).map { |c| parse_resource(c, options) } if r.children.any?
       data[:parent] = r.parent.url
+      options[:data_fields].each do |field|
+        if field == :title
+          data[:title] = r.data.title || resource_dir(r)
+        end
+        data[field] = r.data[field]
+      end
       data
     end
 
