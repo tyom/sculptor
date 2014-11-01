@@ -4,8 +4,11 @@ Tool to create style guides and prototype web apps.
 
 ## Installation
 
+node is required to run Bower.
+
 ```
 $ gem install sculptor
+$ npm install -g bower
 ```
 
 ## Usage
@@ -22,7 +25,8 @@ sculptor init project-name
 
 Aliases: `i`, `new`, `n`.
 
-When finished run `bower install` (`npm install -g bower` if bower is not installed) in project directory to install client-side dependencies.
+This command will create scaffold for new project and install client dependencies via Bower.
+Make sure Bower is installed globally (`npm install -g bower`).
 
 ### Create new model
 
@@ -83,6 +87,7 @@ Sculptor is using Slim templates internally but should work with other templates
 ### Model helpers
 
 * `model`
+  - `url` (String) - first optional parameter is URL to the page with the component
   - `title`
   - `description`
   - `pretty` {boolean}
@@ -101,7 +106,11 @@ Sculptor is using Slim templates internally but should work with other templates
 * `relative_dir`
 * `resource_file`
 * `resource_dir`
-* `subpages_for`
+* `resources_for`
+  - `dir` - target directory for resources list (required)
+  - `ext` - filter resources with matching extension (default: 'html')
+  - `exlude_indexes` - whether to exclude directory index files (default: false)
+  - `sort_by` - sort resources by (defaults to `resource.url`)
 * `append_class`
 
 ### Data helpers

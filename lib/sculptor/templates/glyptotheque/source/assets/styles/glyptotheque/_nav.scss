@@ -91,6 +91,17 @@
       color: inherit;
       padding: 8px 10px;
     }
+
+    ._count {
+      float: right;
+      background: rgba(black, .03);
+      color: rgba(black, .4);
+      line-height: 16px;
+      padding: 0 7px;
+      margin: -1px 0;
+      line-height: 16px;
+      border-radius: 7px;
+    }
   }
 
   li.s-selected a {

@@ -4,19 +4,17 @@ html
     meta charset='utf-8'
     title = current_page.data.title || yield_content(:page_title) || resource_file(current_page)
     meta name='viewport' content='width=device-width'
-    = yield_content :styles
-    = include_stylesheets(current_page.data.stylesheets) if current_page.data.stylesheets
-    = include_stylesheet(current_page.data.stylesheet) if current_page.data.stylesheet
+    = yield_content :stylesheets
+    = include_stylesheets(current_page.data.stylesheets || current_page.data.stylesheet)
     css:
       body {
         padding: 5px;
         margin: 0;
       }
 
-
   body class="#{yield_content(:body_class)}"
     = yield
 
     = yield_content :javascripts
-    = include_javascripts current_page.data.javascripts if current_page.data.javascripts
+    = include_javascripts(current_page.data.javascripts || current_page.data.javascript)
     = yield_content :post_body

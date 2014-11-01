@@ -32,4 +32,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "middleman-core", [">= 3.3", "< 4.0"]
   spec.add_dependency "thor", [">= 0.15.2", "< 2.0"]
   spec.add_dependency "nokogiri", [">= 1.6", "< 2.0"]
+  spec.add_dependency "rest_client", "~> 1.7.3"
+  spec.add_dependency "oj", "~> 2.10.2"
 end

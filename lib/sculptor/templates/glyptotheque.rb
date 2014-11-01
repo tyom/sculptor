@@ -28,6 +28,10 @@ class Middleman::Templates::Glyptotheque < Middleman::Templates::Base
     directory 'glyptotheque/source', File.join(location, 'source')
     directory 'glyptotheque/data', File.join(location, 'data')
   end
+
+  def generate_bower!
+    run("cd #{location}; bower install")
+  end
 end
 
 # Register the template

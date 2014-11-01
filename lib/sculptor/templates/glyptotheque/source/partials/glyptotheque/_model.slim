@@ -1,18 +1,19 @@
 - local_url = current_page.metadata.page[:local_url]
-- title = current_page.metadata.page[:title] || locals[:title]
+- title = current_page.metadata.page[:title] || locals[:title] # locals should be first but there's a bug
+- description = locals[:description] || current_page.metadata.page[:description]
 
 - if resource_file(current_page).match(/-standalone$/)
   = html
 - else
   article.glypto-model
     header
-      - if locals[:title]
+      - if title
         h3._title
           - if local_url
             = link_to title, local_url
           - else
             = title
-      - if locals[:description]
+      - if description
         p._description = description
 
       - url = local_url || current_page.url
@@ -26,3 +27,11 @@
         figure = html
 
     = model_source(source_type) { source_code }
+
+  - unless locals[:iframe]
+    - stylesheets = current_page.metadata.page[:stylesheet] || current_page.metadata.page[:stylesheets] || current_page.data[:stylesheet] || current_page.data[:stylesheets]
+    - javascripts = current_page.metadata.page[:javascript] || current_page.metadata.page[:javascripts] || current_page.data[:javascript] || current_page.data[:javascripts]
+    - if stylesheets
+      - content_for :stylesheets, include_stylesheets(stylesheets)
+    - if javascripts
+      - content_for :javascripts, include_javascripts(javascripts)

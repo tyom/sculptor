@@ -17,7 +17,9 @@ class Middleman::Extensions::Model < ::Middleman::Extension
     #       be requested by providing 0-based index of the list of matches.
     #       e.g. `img #0`
     # * `&block` (optional)
-    def model(location=nil, options={}, &block)
+    def model(*options, &block)
+      location = options.first.is_a?(String) && options.shift || nil
+      options = options.first || {}
       if block_given?
         html = capture_html(&block)
         metadata = options
@@ -35,9 +37,9 @@ class Middleman::Extensions::Model < ::Middleman::Extension
 
           # Hack: inject local data that can be provided as parameter
           # Provided under `data.page` in partials (.component)
-          resource.add_metadata({ page: options[:data] })
+          resource.add_metadata({ page: options[:data] || {} })
 
-          html = resource.render
+          html = resource.render(layout: false)
         end
       else
         raise "Model `#{options[:title]}`: `url` or HTML block is missing"
