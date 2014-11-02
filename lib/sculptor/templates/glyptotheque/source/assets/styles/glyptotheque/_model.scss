@@ -9,9 +9,9 @@
   > header {
     @include clearfix;
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
-    background: lighten($light-grey, 9);
+    background: white;
     position: relative;
-    padding: 10px 20px;
+    padding: 10px 15px;
     margin-bottom: 2px;
     min-height: 40px;
 
@@ -49,22 +49,34 @@
   }
 
   > .glypto-model-stage {
-    background: lighten($light-grey, 9);
-    padding: 10px;
+    $_padding: 15px;
+
+    position: relative;
+    background: white;
+    padding: $_padding;
+
+    &:before {
+      @include transition(300ms);
+      @include position(absolute, $_padding $_padding $_padding $_padding);
+      margin: -1px;
+      box-shadow: 0 0 0 1px transparent;
+      content: '';
+    }
+
+    &:hover:before {
+      box-shadow: 0 0 0 1px rgba(black, .1);
+    }
 
     > figure,
     > iframe {
       @include box-sizing(content-box);
-      margin: 0;
-      border-radius: 3px;
-      border: 1px dotted rgba(0,0,0,.13);
-      background: white;
       display: block;
+      margin: 0;
+      position: relative;
     }
 
     > figure {
       @include clearfix;
-      padding: 5px;
     }
 
     ._component {
@@ -95,7 +107,7 @@
     box-shadow: inset 0 1px darken($light-grey, 5);
 
     > header {
-      padding: 8px 20px;
+      padding: 8px 15px;
     }
 
     ._toggle {
@@ -138,7 +150,7 @@
 
     pre {
       font: 12px/1.4 Menlo, monospace;
-      padding: 10px 20px;
+      padding: 10px 15px;
       margin: 0;
       white-space: pre-wrap;
     }

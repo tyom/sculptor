@@ -9,4 +9,4 @@
       iframe: r.metadata.page[:iframe] \
     } })
 
-  = partial r.url
+  = partial r.url.sub(/\/$/, '.html')

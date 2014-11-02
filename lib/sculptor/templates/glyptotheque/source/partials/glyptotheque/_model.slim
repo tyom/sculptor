@@ -1,8 +1,11 @@
 - local_url = current_page.metadata.page[:local_url]
+- url = local_url || current_page.url
 - title = current_page.metadata.page[:title] || locals[:title] # locals should be first but there's a bug
 - description = locals[:description] || current_page.metadata.page[:description]
 
-- if resource_file(current_page).match(/-standalone$/)
+- standalone_url = !!extensions[:directory_indexes] ? url.sub(/\/$/, '/standalone') : url.sub(/\.html$/, '-standalone.html')
+
+- if resource_file(current_page).match(/-?standalone\/?$/)
   = html
 - else
   article.glypto-model
@@ -16,13 +19,12 @@
       - if description
         p._description = description
 
-      - url = local_url || current_page.url
-      ._standalone = link_to url.sub('.html', '-standalone.html'), target: '_blank' do
+      ._standalone = link_to standalone_url, target: '_blank' do
         i.fa.fa-external-link title="Standalone version"
 
     section.glypto-model-stage
       - if current_page.metadata.page.iframe
-        iframe src="#{url.sub('.html', '-standalone.html')}" height="0" width="100%" frameborder="0" scrolling="no" onload='javascript:resizeIframe(this);'
+        iframe src="#{standalone_url}" height="0" width="100%" frameborder="0" scrolling="no" onload='javascript:resizeIframe(this);'
       - else
         figure = html
 

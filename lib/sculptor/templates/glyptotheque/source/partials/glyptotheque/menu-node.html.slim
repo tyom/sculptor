@@ -1,0 +1,4 @@
+li ng-class="{'_index': node.children, 's-selected': isSelected}"
+  = link_to '{{relativeUrl(node.url)}}'
+    | {{node.title}}
+    span._count ng-if="node.children.length" {{node.children.length}}
