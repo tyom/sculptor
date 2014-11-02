@@ -6,11 +6,6 @@ html
     meta name='viewport' content='width=device-width'
     = yield_content :stylesheets
     = include_stylesheets(current_page.data.stylesheets || current_page.data.stylesheet)
-    css:
-      body {
-        padding: 5px;
-        margin: 0;
-      }
 
   body class="#{yield_content(:body_class)}"
     = yield
