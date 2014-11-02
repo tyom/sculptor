@@ -3,6 +3,12 @@
 - content_for :stylesheets,  stylesheet_link_tag('glyptotheque')
 
 = wrap_layout :layout do
-  = partial 'partials/glyptotheque/nav'
+  glypto-menu
   main.glyptotheque
     = yield
+
+  javascript:
+    APP_CONTEXT = {
+      sitemap: #{partial 'sitemap.json'},
+      current_url: "#{current_page.url}"
+    }
