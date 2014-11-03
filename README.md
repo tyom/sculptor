@@ -97,7 +97,8 @@ Sculptor is using Slim templates internally but should work with other templates
   - `source_type` {string} default `html`
     type of source code used for code highlighting
 * `model_iframe`
-* `model_source`
+* `model_source` - Generate highlighted source code for HTML
+* `outline` - Generate outline of HTML structure
 
 ### Resource helpers
 * `include_stylesheets`
