@@ -6,3 +6,6 @@ Middleman::Extensions::DataLoaders.register
 
 require 'sculptor/extensions/resource_helpers'
 Middleman::Extensions::ResourceHelpers.register
+
+require 'sculptor/extensions/outliner'
+Middleman::Extensions::Outliner.register

@@ -84,6 +84,7 @@ end
 activate :model
 activate :data_loaders
 activate :resource_helpers
+activate :outliner
 activate :syntax, css_class: 'codehilite'
 
 Slim::Engine.disable_option_validator!
