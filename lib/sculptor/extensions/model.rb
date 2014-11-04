@@ -50,7 +50,7 @@ class Middleman::Extensions::Model < ::Middleman::Extension
       options[:source_code] = html
       options[:source_type] ||= 'html'
 
-      partial('partials/glyptotheque/model', locals: options)
+      partial('glyptotheque/model', locals: options)
     end
 
     def model_iframe(location=nil, options={}, &block)
@@ -60,7 +60,7 @@ class Middleman::Extensions::Model < ::Middleman::Extension
 
     def model_source(type, &block)
       source_code = capture_html(&block)
-      partial('partials/glyptotheque/model-source', locals: { source_type: type, source_code: source_code })
+      partial('glyptotheque/model-source', locals: { source_type: type, source_code: source_code })
     end
 
     private

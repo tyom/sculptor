@@ -35,6 +35,6 @@ Feature: Run `create` command
     And a directory named "source/test" should exist
     Then the file "source/test/test.html.slim" should contain "Hello World"
     And the file "source/test/test.html.slim" should contain "My model description"
-    And the file "source/test/index.html.slim" should contain "'partials/glyptotheque/model-index'"
+    And the file "source/test/index.html.slim" should contain "'glyptotheque/model-index'"
     And the file "source/test/test.yaml" should contain "hello: World"
     And the file "source/test/styles.scss" should contain "@import 'bourbon'"

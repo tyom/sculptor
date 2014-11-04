@@ -6,7 +6,7 @@
 page '/**', :layout => 'glyptotheque'
 # With no layout
 page "*.component", :layout => false
-page "/partials/*", :layout => false, directory_index: false
+page "/glyptotheque/*", :layout => false, directory_index: false
 page '*.css', :layout => false
 page '*.js', :layout => false
 page '*.json', :layout => false
