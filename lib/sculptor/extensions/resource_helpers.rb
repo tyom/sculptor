@@ -21,14 +21,13 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
       resource.url.split('/').last
     end
 
-    def resources_for(dir, ext: 'html', exclude_indexes: false, sort_by: nil, ignore: nil)
+    def resources_for(dir, ext: 'html', exclude_indexes: false, sort_by: nil, ignore: nil, allow_hidden: false)
       filtered = sitemap.resources
         .reject  {|r| r.url == dir}                      # Exclude main directory index
-        .reject  {|r| r.data.hidden}                     # reject hidden (Front matter)
         .select  {|r| r.url.start_with?(dir)}            # Select files in the given dir
 
       collect_resources(filtered,
-        { ext: ext, exclude_indexes: exclude_indexes, sort_by: sort_by, ignore: ignore}
+        { ext: ext, exclude_indexes: exclude_indexes, sort_by: sort_by, ignore: ignore, allow_hidden: allow_hidden}
       )
     end
 
@@ -97,6 +96,9 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
         .select  {|r| r.ext == ".#{options[:ext]}"}      # Select files only HTML files
         .sort_by {|r| r.url }                            # Sort by url (default)
         .sort_by {|r| r.data[options[:sort_by]] || -1}   # Sort by `sort_by` param
+        .reject  {|r|                                    # Reject hidden (Front matter)
+          r.data.hidden unless options[:allow_hidden]
+        }
         .reject  {|r|                                    # Exclude all directory indexes
           options[:exclude_indexes] ? r.directory_index? : false
         }
