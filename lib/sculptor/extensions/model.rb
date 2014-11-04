@@ -43,12 +43,9 @@ class Middleman::Extensions::Model < ::Middleman::Extension
 
       options[:title] = options[:title] || data.page.title
       options[:description] = options[:description] || data.page.description
+      options[:html] = html
 
       current_page.add_metadata({ page: { iframe: options[:iframe] || false }})
-
-      options[:html] = html
-      options[:source_code] = html
-      options[:source_type] ||= 'html'
 
       partial('glyptotheque/model', locals: options)
     end
