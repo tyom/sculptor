@@ -1,7 +1,2 @@
-section.glypto-model-outline ng-class="{'__expanded': outline_expanded}"
-  header
-    button._toggle(ng-class="{'__toggled': outline_expanded}" ng-click="outline_expanded = !outline_expanded") Outline
-  ._container
-    ._elements
-      - elements.each do |item|
-        = partial 'glyptotheque/model-outline-element', locals: { item: item }
+- elements.each do |item|
+  = partial 'glyptotheque/model-outline-element', locals: { item: item }

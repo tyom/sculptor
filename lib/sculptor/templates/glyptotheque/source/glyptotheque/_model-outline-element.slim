@@ -10,7 +10,7 @@
         span._attr
           span._name = a.name
           span._value title="#{a.value.length > 27 ? a.value.strip : nil}" = a.value
-  - if item.text
+  - if item.text.present?
     span._text title="#{item.text.length > 27 ? item.text.strip : nil}" = item.text
 
   - if item.children.any?
