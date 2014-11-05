@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'sculptor'
+gem 'sculptor', "#{Sculptor::VERSION}"
 gem 'middleman', '~>3.3'
 gem 'middleman-pry'
 gem 'middleman-deploy'
