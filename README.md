@@ -94,10 +94,9 @@ Sculptor is using Slim templates internally but should work with other templates
     whether to try to reformat the HTML (e.g. if remote HTML is minified)
   - `css` - CSS selector to extract from the remote page. If specific element is required it can be selected by providing `#<0-based index>` at the end of selector separated by space. e.g. `img #0` will select the first image.
   - `data` - local data that can be injected in a local component (partial with `.component.slim` extension)
-  - `source_type` {string} default `html`
     type of source code used for code highlighting
 * `model_iframe`
-* `model_source` - Generate highlighted source code for HTML
+* `html` - Generate source code for HTML
 * `outline` - Generate outline of HTML structure
 
 ### Resource helpers

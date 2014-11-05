@@ -28,8 +28,7 @@
       - else
         figure = html
 
-    = model_source(source_type) { source_code }
-    = outline(html)
+    = partial 'glyptotheque/model-utils', locals: { html: html }
 
   - unless locals[:iframe]
     - stylesheets = current_page.metadata.page[:stylesheet] || current_page.metadata.page[:stylesheets] || current_page.data[:stylesheet] || current_page.data[:stylesheets]
