@@ -12,7 +12,7 @@ class Middleman::Extensions::Outliner < ::Middleman::Extension
 
       elements = parse_elements(doc.children)
 
-      partial('partials/glyptotheque/model-outline', locals: { elements: elements })
+      partial('glyptotheque/model-outline', locals: { elements: elements })
     end
 
     private
