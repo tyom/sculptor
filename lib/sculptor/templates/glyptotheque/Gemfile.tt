@@ -1,3 +1,5 @@
+require 'sculptor/version'
+
 source 'https://rubygems.org'
 
 gem 'sculptor', "#{Sculptor::VERSION}"
