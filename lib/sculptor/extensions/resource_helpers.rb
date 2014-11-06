@@ -109,6 +109,7 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
 
     def parse_resource(r, options)
       data = {}
+      data[:path] = url_for("/#{r.path}")
       data[:url] = r.url
       data[:children] = collect_resources(r.children, options).map { |c| parse_resource(c, options) } if r.children.any?
       data[:parent] = r.parent.url
