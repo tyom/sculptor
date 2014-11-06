@@ -8,7 +8,7 @@
     display: inline-block;
     font-size: 10px;
     font-weight: 600;
-    color: rgba(black, .3);
+    color: #888;
     text-transform: uppercase;
     padding: 4px 8px;
     background: none;
@@ -22,13 +22,13 @@
       background: rgba(white, .7);
     }
     &:active {
-      color: rgba(black, .5);
-      background: white;
+      color: #555;
+      background: rgba(black, .1);
     }
 
     &.__active {
+      color: white;
       background: rgba(black, .3);
-      color: rgba(white, .9);
 
       &:active {
         background: rgba(black, .5);

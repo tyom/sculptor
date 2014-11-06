@@ -1,17 +1,23 @@
-- section ||= '/'
-- subpages = resources_for(section, sort_by: :nav_order, ignore: /\.component\./)
+glypto-menu
 
-- unless subpages.empty?
+/ Use inline templates to avoid dealing with relative templateUrls
+
+script type="text/ng-template" id="glyptotheque/menu.html"
   nav.glypto-nav ng-class="{'s-hidden' : hidden}"
-    button.nav-toggle ng-click="toggle()"
+    button.glypto-nav-toggle ng-click="toggle()" title="Toggle menu: Command + Shift + E"
     = link_to 'Glyptotheque', '/', class: '_logo'
-    ul
-      - subpages.each do |r|
-        li(class="#{'s-selected' if r == current_page} #{'_index' if r.directory_index?}")
-          - if r.directory_index?
-            - subpages_count = resources_for(r.url, exclude_indexes: true).count
-            = link_to r.url
-              = (r.data.title || resource_dir(r))
-              span._count = subpages_count
-          - else
-            = link_to (r.data.title || resource_file(r)), r.url
+    .search: input.mousetrap(ng-model="search" type="search" placeholder="Search (/ to focus)" glypto-search)
+
+    glypto-menu-tree items="items" filter="search"
+
+
+script type="text/ng-template" id="glyptotheque/menu-tree.html"
+  ul
+    glypto-menu-node ng-repeat="node in items|filter:filter"
+
+
+script type="text/ng-template" id="glyptotheque/menu-node.html"
+  li ng-class="{'_index': node.children, 's-selected': isSelected}"
+    = link_to '{{node.path}}'
+      | {{node.title}}
+      span._count ng-if="node.children.length" {{node.children.length}}
