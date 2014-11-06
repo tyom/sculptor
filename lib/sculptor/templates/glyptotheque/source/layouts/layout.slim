@@ -20,13 +20,6 @@ html ng-app=(yield_content(:ng_app))
       }
 
   body class="#{yield_content(:body_class)}"
-    javascript:
-      // If necessary insert a placeholder before the real menu is created
-      if(!store.get('glypto-menu-hidden')) {
-        var e = document.createElement('div');
-        e.id = 'glypto-nav-placeholder';
-        document.body.insertBefore(e, document.body.childNodes[0]);
-      }
 
     = yield
 

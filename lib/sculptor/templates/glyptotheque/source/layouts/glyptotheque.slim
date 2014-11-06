@@ -3,7 +3,9 @@
 - content_for :stylesheets,  stylesheet_link_tag('glyptotheque')
 
 = wrap_layout :layout do
-  = partial 'glyptotheque/nav'
+  - if resource_tree('/').any?
+    = partial 'glyptotheque/nav'
+
   main.glyptotheque
     = yield
 

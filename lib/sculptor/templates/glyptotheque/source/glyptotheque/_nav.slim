@@ -1,3 +1,11 @@
+javascript:
+  // If necessary insert a placeholder before the real menu is created
+  if(!store.get('glypto-menu-hidden')) {
+    var e = document.createElement('div');
+    e.id = 'glypto-nav-placeholder';
+    document.body.insertBefore(e, document.body.childNodes[0]);
+  }
+
 glypto-menu
 
 / Use inline templates to avoid dealing with relative templateUrls
