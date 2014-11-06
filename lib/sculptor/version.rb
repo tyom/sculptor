@@ -1,3 +1,3 @@
 module Sculptor
-  VERSION = "0.0.9.3"
+  VERSION = "0.0.10"
 end
