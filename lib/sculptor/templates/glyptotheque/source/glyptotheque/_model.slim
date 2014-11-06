@@ -24,7 +24,7 @@
 
     section.glypto-model-stage
       - if current_page.metadata.page.iframe
-        iframe src="#{standalone_url}" height="0" width="100%" frameborder="0" scrolling="no" onload='javascript:resizeIframe(this);'
+        iframe src="#{url_for(standalone_url)}" height="0" width="100%" frameborder="0" scrolling="no" onload='javascript:resizeIframe(this);'
       - else
         figure = html
 
