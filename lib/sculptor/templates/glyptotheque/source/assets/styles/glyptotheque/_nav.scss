@@ -37,6 +37,8 @@
   .search {
     padding: 6px;
     background: rgba(black, .06);
+    border-bottom: 1px solid transparent;
+    margin-bottom: -1px;
 
     input {
       @include box-sizing(border-box);
@@ -109,8 +111,8 @@
     color: #555;
   }
 
-  > ul > li:not(:last-child) {
-    border-bottom: 1px solid rgba(black, .07);
+  > ul > li {
+    border-top: 1px solid rgba(black, .07);
   }
 
   a {
