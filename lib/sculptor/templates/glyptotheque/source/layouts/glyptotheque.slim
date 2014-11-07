@@ -7,8 +7,8 @@
     = partial 'glyptotheque/nav'
 
   main.glyptotheque
-    header
-      - if current_page.data.title
+    - if current_page.data.title
+      header
         h1 = current_page.data.title
     = yield
 
