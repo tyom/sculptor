@@ -10,8 +10,6 @@ class Middleman::Extensions::Model < ::Middleman::Extension
     # Requires either `&block` or `location`
     # `location` - string with remote location to fetch the HTML from.
     # Options:
-    # * `title` (optional) - Model title
-    # * `description` (optional) - Model description
     # * `css` (optional, defaults to `body`) - element(s) with CSS selector
     #       to extract from the page. If a particular element is required it can
     #       be requested by providing 0-based index of the list of matches.
@@ -34,15 +32,13 @@ class Middleman::Extensions::Model < ::Middleman::Extension
           html = partial(relative_dir(current_page.path, location).to_s)
         end
       else
-        raise "Model `#{options[:title]}`: `url` or HTML block is missing"
+        raise "`url` or HTML block is missing"
       end
 
       if metadata
         options.reverse_merge!(metadata.symbolize_keys!)
       end
 
-      options[:title] = options[:title] || data.page.title
-      options[:description] = options[:description] || data.page.description
       options[:html] = html
 
       current_page.add_metadata({ page: { iframe: options[:iframe] || false }})

@@ -22,7 +22,7 @@
       ._standalone = link_to standalone_url, target: '_blank' do
         i.fa.fa-external-link title="Standalone version"
 
-    section.glypto-model-stage
+    .glypto-model-stage
       - if current_page.metadata.page.iframe
         iframe src="#{url_for(standalone_url)}" height="0" width="100%" frameborder="0" scrolling="no" onload='javascript:resizeIframe(this);'
       - else

@@ -46,7 +46,13 @@ body {
     border: 0;
   }
 
-  h1 {
+  h2 {
     font-weight: 400;
+    font-size: 22px;
+    margin: 0;
+
+    a {
+      text-decoration: none;
+    }
   }
 }
