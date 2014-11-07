@@ -11,12 +11,15 @@ html ng-app=(yield_content(:ng_app))
     javascript:
       function resizeIframe(obj) {
         var doc = obj.contentDocument;
-        var height = Math.max(
-            doc.body.scrollHeight, doc.documentElement.scrollHeight,
-            doc.body.offsetHeight, doc.documentElement.offsetHeight,
-            doc.body.clientHeight, doc.documentElement.clientHeight
-        );
-        obj.style.height = height + 'px';
+        // TODO: Improve iframe autosize
+        setTimeout(function() {
+          var height = Math.max(
+              doc.body.scrollHeight, doc.documentElement.scrollHeight,
+              doc.body.offsetHeight, doc.documentElement.offsetHeight,
+              doc.body.clientHeight, doc.documentElement.clientHeight
+          );
+          obj.style.height = height + 'px';
+        }, 200);
       }
 
   body class="#{yield_content(:body_class)}"
