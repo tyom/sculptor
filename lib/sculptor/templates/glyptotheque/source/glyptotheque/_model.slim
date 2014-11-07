@@ -6,7 +6,7 @@
 - isolated_url = !!extensions[:directory_indexes] ? url.sub(/\/$/, '/isolated') : url.sub(/\.html$/, '-isolated.html')
 
 - if resource_file(current_page).match(/-?isolated\/?$/)
-  - content_for :model, html
+  - content_for :model, html, flush: true
 - else
   article.glypto-model
     .glypto-model-stage
@@ -15,7 +15,8 @@
       - else
         figure = html
 
-    = partial 'glyptotheque/model-utils', locals: { html: html, isolated_url: isolated_url }
+    = partial 'glyptotheque/model-utils',
+      locals: { html: html, isolated_url: isolated_url }
 
   - unless locals[:iframe]
     - stylesheets = current_page.metadata.page[:stylesheet] || current_page.metadata.page[:stylesheets] || current_page.data[:stylesheet] || current_page.data[:stylesheets]
