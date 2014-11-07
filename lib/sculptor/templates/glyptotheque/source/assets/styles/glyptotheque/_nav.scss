@@ -35,7 +35,7 @@
   }
 
   .search {
-    padding: 5px;
+    padding: 6px;
     background: rgba(black, .06);
 
     input {
@@ -82,7 +82,7 @@
       @include transition(300ms);
       @include position(absolute, 5px 0 null 0);
       box-shadow: 0 2px 0 1px black, 0 7px 0 1px black, 0 12px 0 1px black;
-      width: 16px;
+      width: 15px;
       margin: auto;
       opacity: .6;
       content: '';
@@ -109,11 +109,8 @@
     color: #555;
   }
 
-  > ul > li:not(:last-child):after {
-    @include background(linear-gradient(to left, transparent, rgba(black, .06)));
-    height: 1px;
-    display: block;
-    content: '';
+  > ul > li:not(:last-child) {
+    border-bottom: 1px solid rgba(black, .07);
   }
 
   a {
@@ -143,13 +140,9 @@
 
     ._count {
       float: right;
-      background: rgba(black, .03);
-      color: rgba(black, .4);
+      color: #999;
+      font-weight: normal;
       line-height: 16px;
-      padding: 0 7px;
-      margin: -1px 0;
-      line-height: 16px;
-      border-radius: 7px;
     }
 
     ul {

@@ -5,8 +5,9 @@
     font-weight: 600;
     color: #888;
     margin: 0;
-    padding: 8px 0;
+    padding: 6px 0;
     position: relative;
+    border-bottom: 2px solid white;
 
     > a,
     > button {
@@ -60,7 +61,7 @@
   }
 
   ._panel {
-    padding: 10px 15px;
+    padding: 10px;
     display: none;
 
     &.__shown {

@@ -8,7 +8,7 @@ body {
 }
 
 .glyptotheque {
-  padding: 0 20px 20px;
+  padding: 20px;
   min-height: 100%;
   overflow: hidden;
   background: lighten($light-grey, 5);
@@ -17,13 +17,16 @@ body {
 
   > header {
     margin: 0 0 30px;
-    border-bottom: 2px solid #ddd;
+    padding: 19px 0 0;
+    border-bottom: 1px solid #ccc;
 
     h1 {
-      color: #628507;
-      font-size: 30px;
-      font-weight: 300;
-      margin: 40px 0 2px;
+      font-size: 28px;
+      font-weight: 400;
+      margin: 0;
+      padding-bottom: 4px;
+      border-bottom: 4px solid #ccc;
+      display: inline-block;
     }
   }
 }
