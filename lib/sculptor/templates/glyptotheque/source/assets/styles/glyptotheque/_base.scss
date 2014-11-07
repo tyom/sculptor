@@ -8,10 +8,45 @@ body {
 }
 
 .glyptotheque {
-  padding: 35px 20px;
+  padding: 0 20px;
   min-height: 100%;
   overflow: hidden;
   background: lighten($light-grey, 5);
   box-shadow: -1px 0 0 rgba(black, .1);
   position: relative;
+
+  > header {
+    height: 33px;
+    margin: 0 -20px 30px;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 1px rgba(white, .4);
+
+    h1 {
+      text-align: center;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding-top: 2px;
+      font-weight: 400;
+      color: #999;
+      font-size: 16px;
+      line-height: 32px;
+      margin: 0;
+    }
+  }
+}
+
+.glypto-section {
+  margin: 0 -20px 30px;
+  padding: 0 20px 30px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 1px rgba(white, .4);
+
+  &:last-child {
+    box-shadow: none;
+    border: 0;
+  }
+
+  h1 {
+    font-weight: 400;
+  }
 }
