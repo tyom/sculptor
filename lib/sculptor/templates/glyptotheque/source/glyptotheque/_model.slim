@@ -6,7 +6,7 @@
 - standalone_url = !!extensions[:directory_indexes] ? url.sub(/\/$/, '/standalone') : url.sub(/\.html$/, '-standalone.html')
 
 - if resource_file(current_page).match(/-?standalone\/?$/)
-  = html
+  - content_for :model, html
 - else
   article.glypto-model
     header
