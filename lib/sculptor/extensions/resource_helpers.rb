@@ -103,7 +103,7 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
           options[:exclude_indexes] ? r.directory_index? : false
         }
         .reject  {|r| ignore ? r.url.match(options[:ignore]) : false }  # Ignore URLs matching pattern (if provided)
-        .reject  {|r| r.path.end_with? ("-standalone#{r.ext}")}         # Ignore proxied '-standalone' mode pages
+        .reject  {|r| r.path.end_with? ("-isolated#{r.ext}")}         # Ignore proxied '-isolated' mode pages
         .reject  {|r| r.path.start_with? ("glyptotheque/")}             # Ignore Sculptor’s partials
     end
 

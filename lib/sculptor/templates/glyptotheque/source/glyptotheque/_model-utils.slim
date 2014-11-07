@@ -3,8 +3,8 @@
     button._tab-toggle(ng-class="{'__active': show == 'outline'}" ng-click="show = show === 'outline' ? null : 'outline'") Outline
     button._tab-toggle(ng-class="{'__active': show == 'source'}" ng-click="show = show === 'source' ? null : 'source'") HTML source
 
-    = link_to standalone_url, class: '_standalone', target: '_blank', title: 'Standalone version'
-      span> Standalone
+    = link_to isolated_url, class: '_isolated', target: '_blank', title: 'Isolated version'
+      span> Isolated
       i.fa.fa-external-link
 
   ._container
