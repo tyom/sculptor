@@ -1,5 +1,7 @@
 ._element
   span._name = item.el_name
+  - if item.id
+    span._id ##{item.id}
   - if item.class_name.present?
     span._classes
       - item.class_name.split(/\s+/).each do |c|

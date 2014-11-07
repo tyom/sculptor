@@ -26,11 +26,13 @@ class Middleman::Extensions::Outliner < ::Middleman::Extension
         next unless e.element?
 
         class_name = e.attributes['class'] && e.attributes['class'].value
-        attributes = e.attributes.reject {|k| k == 'class' }
+        id = e.attributes['id'] && e.attributes['id'].value
+        attributes = e.attributes.reject {|k| k == 'class' || k == 'id' }
 
         result << {
           el_name: e.name,
           class_name: class_name,
+          id: id,
           attrs: attributes.values.map { |a| { name: a.name, value: a.value } },
           children: parse_elements(e.children),
           text: text
