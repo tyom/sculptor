@@ -28,7 +28,7 @@
       - else
         figure = html
 
-    = partial 'glyptotheque/model-utils', locals: { html: html }
+    = partial 'glyptotheque/model-utils', locals: { html: html, standalone_url: standalone_url }
 
   - unless locals[:iframe]
     - stylesheets = current_page.metadata.page[:stylesheet] || current_page.metadata.page[:stylesheets] || current_page.data[:stylesheet] || current_page.data[:stylesheets]
