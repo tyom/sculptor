@@ -16,23 +16,23 @@ class Middleman::Extensions::Model < ::Middleman::Extension
     #       e.g. `img #0`
     # * `&block` (optional)
     def model(*options, &block)
-      location = options.first.is_a?(String) && options.shift || nil
+      id = options.first.is_a?(String) && options.shift || nil
       options = options.first || {}
       if block_given?
         html = capture_html(&block)
         metadata = options
-      elsif location
-        # Remote location
-        if location.start_with?('http')
-          result = grab_remote(location, options[:css], options)
+      end
+
+      if url = options[:url]
+        # Remote URL
+        if url.start_with?('http')
+          result = grab_remote(url, options[:css], options)
           metadata = options
           html = result.to_html
         # Assume local path
         else
-          html = partial(relative_dir(current_page.path, location).to_s)
+          html = partial(relative_dir(current_page.path, url).to_s)
         end
-      else
-        raise "`url` or HTML block is missing"
       end
 
       if metadata
@@ -40,8 +40,19 @@ class Middleman::Extensions::Model < ::Middleman::Extension
       end
 
       options[:html] = html
+      options[:id] = id
 
       current_page.add_metadata({ page: { iframe: options[:iframe] || false }})
+
+      page_models = current_page.metadata[:page][:models] || [{ id: id, html: html }]
+      model = { id: id, html: html }
+
+      current_page.add_metadata({ page: { models:
+          page_models << model
+        }
+      })
+
+      page_models.uniq!(&:html)
 
       partial('glyptotheque/model', locals: options)
     end
