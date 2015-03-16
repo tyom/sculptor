@@ -42,17 +42,13 @@ class Middleman::Extensions::Model < ::Middleman::Extension
       options[:html] = html
       options[:id] = id
 
-      current_page.add_metadata({ page: { iframe: options[:iframe] || false }})
+      models = {}
+      models[id] = {
+        iframe: options[:iframe] || false,
+        html: html
+      }
 
-      page_models = current_page.metadata[:page][:models] || [{ id: id, html: html }]
-      model = { id: id, html: html }
-
-      current_page.add_metadata({ page: { models:
-          page_models << model
-        }
-      })
-
-      page_models.uniq!(&:html)
+      current_resource.add_metadata({ models: models })
 
       partial('glyptotheque/model', locals: options)
     end

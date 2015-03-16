@@ -3,20 +3,19 @@
 - title = current_page.metadata.page[:title] || locals[:title] # locals should be first but there's a bug
 - description = locals[:description] || current_page.metadata.page[:description]
 
-- isolated_url = !!extensions[:directory_indexes] ? url.sub(/\/$/, '/isolated') : url.sub(/\.html$/, '-isolated.html')
+- current_model = current_resource.metadata.models[id]
 
-- if resource_file(current_page).match(/-?isolated\/?$/)
-  - content_for :model, html, flush: true
-- else
-  article.glypto-model
-    .glypto-model-stage
-      - if current_page.metadata.page.iframe
-        iframe src="#{url_for(isolated_url)}" height="0" width="100%" frameborder="0" scrolling="no" onload='javascript:resizeIframe(this);'
-      - else
-        figure = html
+- isolated_url = !!extensions[:directory_indexes] ? url.sub(/\/$/, '/isolated') : url.sub(/\.html$/, "-#{id}-isolated.html")
 
-    = partial 'glyptotheque/model-utils',
-      locals: { html: html, isolated_url: isolated_url }
+article.glypto-model
+  .glypto-model-stage
+    - if current_model.iframe
+      iframe src="#{url_for(isolated_url)}" height="0" width="100%" frameborder="0" scrolling="no" onload='javascript:resizeIframe(this);'
+    - else
+      figure = current_model.html
+
+  = partial 'glyptotheque/model-utils',
+    locals: { html: html, id: id, isolated_url: isolated_url }
 
   - unless locals[:iframe]
     - stylesheets = current_page.metadata.page[:stylesheet] || current_page.metadata.page[:stylesheets] || current_page.data[:stylesheet] || current_page.data[:stylesheets]
