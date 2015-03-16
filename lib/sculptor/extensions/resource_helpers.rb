@@ -47,7 +47,11 @@ class Middleman::Extensions::ResourceHelpers < ::Middleman::Extension
     end
 
     def local_data(path)
-      result = sitemap.find_resource_by_path(relative_dir(current_page.path, path).to_s)
+      current_path =  current_resource.path
+      if current_resource.metadata.page.has_key? :local_url
+        current_path = current_resource.metadata.page.local_url
+      end
+      result = sitemap.find_resource_by_path(relative_dir(current_path, path).to_s)
       raise "#{path} not found" unless result
 
       case result.ext
