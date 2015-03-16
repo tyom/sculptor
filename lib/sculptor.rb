@@ -1,4 +1,5 @@
 require 'pry'
+require 'middleman-core/application'
 require 'middleman-core'
 require 'sculptor/version'
 require 'sculptor/method_missing'
